@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TP JS</title>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container flex flex--col">
+        <form class="flex__item" style="width: 100%;">
+            <fieldset>
+                <legend>Caracteristique du portail</legend>
+                <div class="flex flex--row input_text_container">
+                    <span class="flex__item--top form_title">Référence :</span>
+                    <input class="flex__item--top form_input input_val" type="text" id="Reference" data-maxl=50 data-minl=3 name="ref" value="">
+                </div>
+                <div class="flex flex--row input_text_container">
+                    <span class="flex__item--top form_title">Description :</span>
+                    <input class="flex__item--top form_input input_val" type="text" id="Description" data-maxl=100 data-minl=3 name="desc" value="">
+                </div>
+                <fieldset class="fieldset2">
+                    <legend>Nombre de ventaux</legend>
+                    <div class="flex flex--row">
+                        <div class="flex__item">
+                            <input type="radio" name="vent" value="Gauche" class="image_changer" id="Ventail_gauche">
+                            <span>Un ventail gauche</span>
+                        </div>
+                        <div class="flex__item">
+                            <input type="radio" name="vent" value="GaucheDroit" class="image_changer" id="Ventail_double">
+                            <span>Deux ventaux</span>
+                        </div>
+                        <div class="flex__item">
+                            <input type="radio" name="vent" value="Droit" class="image_changer" id="Ventail_droite">
+                            <span>Un ventail droit</span>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="flex flex--row input_text_container">
+                    <span class="flex__item--top form_title">Nombre de traverse : </span>
+                    <select class="flex__item form_input input_val image_changer" id="Nombre_traverse" data-maxl="5" data-minl="2">
+                        <option value="0"></option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </fieldset>
+        </form>
+        <div class="central_img flex__item">
+            <img src="./images/Cemsas.gif" alt="Logo CEMSAS" id='to_dipslay'>
+        </div>
+        <form>
+            <fieldset>
+                <legend>Dimensions en mm</legend>
+                <div class="flex flex--col">
+                    <div class="flex__item flex flex--row">
+                        <div class="flex__item--top table__title table__td">Lg</div>
+                        <div class="flex__item--top table__input table__td"><input disabled type="number" name="" id="Longueur" class="input_val"></div>
+                        <div class="flex__item--top table__title table__td">Ld</div>
+                        <div class="flex__item--top table__input table__td"><input disabled type="number" name="" id="Largeur" class="input_val"></div>
+                    </div>
+                    <div class="flex__item flex flex--row">
+                        <div class="flex__item--top table__title table__td">H1</div>
+                        <div class="flex__item--top table__input table__td"><input disabled type="number" name="" id="h1"class="input_val" data-minl=5 data-maxl=10000></div>
+                        <div class="flex__item--top table__title table__td">Battue</div>
+                        <div class="flex__item--top table__input table__td">
+                            <select id="battue" class="input_val" disabled>
+                                <option value="0"></option>
+                                <option value="Sans">Sans</option>
+                                <option value="Droite">Droite</option>
+                                <option value="Gauche">Gauche</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex__item flex flex--row">
+                        <div class="flex__item--top table__title table__td">H2</div>
+                        <div class="flex__item--top table__input table__td"><input disabled type="number" name="" id="h2" class="input_val hx" data-minl=200 data-maxl=10000></div>
+                            <div class="flex__item--top table__title table__td"></div>
+                            <div class="flex__item--top table__input table__td"></div>
+                    </div>
+                    <div class="flex__item flex flex--row">
+                        <div class="flex__item--top table__title table__td">H3</div>
+                        <div class="flex__item--top table__input table__td"><input disabled type="number" name="" id="h3" class="input_val hx" data-minl=200 data-maxl=10000></div>
+                        <div class="flex__item--top table__title table__td"></div>
+                        <div class="flex__item--top table__input table__td"></div>
+                    </div>
+                    <div class="flex__item flex flex--row">
+                        <div class="flex__item--top table__title table__td">H4</div>
+                        <div class="flex__item--top table__input table__td"><input disabled type="number" name="" id="h4" class="input_val hx" data-minl=200 data-maxl=10000></div>
+                        <div class="flex__item--top table__title table__td"></div>
+                        <div class="flex__item--top table__input table__td"></div>
+                    </div>
+                    <div class="flex__item flex flex--row">
+                        <div class="flex__item--top table__title table__td">H5</div>
+                        <div class="flex__item--top table__input table__td"><input disabled type="number" name="" id="h5" class="input_val hx" data-minl=200 data-maxl=10000></div>
+                        <div class="flex__item--top table__title table__td"></div>
+                        <div class="flex__item--top table__input table__td"></div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <div class="flex__item commit"> 
+            <button id="button">Commit</button>
+            <button id="button_test">Test Button</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="./script.js"></script>
+</body>
+
+</html>

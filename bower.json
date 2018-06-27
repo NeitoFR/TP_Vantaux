@@ -1,0 +1,21 @@
+{
+  "name": "tp_ventaux_server",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Willem Houm <willem.houm@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "jquery-qrcode": "*"
+  }
+}
