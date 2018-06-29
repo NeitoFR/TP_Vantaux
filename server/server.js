@@ -19,31 +19,72 @@ app.use(function (req, res, next) {
 
 app.post('/newcommand', function (req, res) {
     console.log('New command incoming', req.body);
-    _storeCommand(JSON.parse(Object.keys(req.body)[0]).details, function (err, ok) {
+    _storeCommand(JSON.parse(Object.keys(req.body)[0]).Details, function (err, ok) {    
         if (err)
             res.status(200).send(err)
-        else{
+        else {
             res.status(200).send(ok)
             console.log('Command Stored effectively');
         }
     })
 });
 
+app.get('/getRefList', function (req, res) {
+    _getRefList(function (err, list) {
+        if (err)
+            res.status(200).send(err);
+        else {
+            if (list.length != 0)
+                res.status(200).send(list);
+            else
+                res.status(200).send([]);
+
+            console.log('List of Command\'s Ref sent');
+        }
+    })
+})
+app.get('/getCommandByRef/:ref', function (req, res) {
+    // console.log(req.params.ref);
+    
+    _getCommandByRef(req.params.ref, function (err, data) {
+        if (err)
+            res.status(200).send(err);
+        else {
+            res.status(200).send(data);
+        }
+    });
+});
+
+function _getCommandByRef(ref, callback) {
+    fs.readFile('./server/command/commands.json', 'utf8', function (err, data) {
+        if (err)
+            throw err;
+        var tab = JSON.parse(data);
+        for (let j = 0; j < tab.length; j++) {
+            if(tab[j].Details.Reference == ref){
+                console.log('Sending '+ref+' details');
+                callback(null, tab[j]);
+                return;
+            }
+
+        }
+    });
+}
 app.listen(_port, function () {
     console.log('Server listening on  : ' + _port);
 });
 
 function _storeCommand(details, callback) {
     fs.readFile('./server/command/commands.json', 'utf8', function (err, data) {
-        if (err) {
+        console.log(details);
+        if (err)
             throw err;
-        }
         var tab = JSON.parse(data);
         tab.push({
-            "nom": details.Nom,
-            "prenom": details.Prenom,
-            "date": moment().format("DD-MM-YYYY_hh-mm"),
-            "details": details
+            "Nom": details.Nom,
+            "Prenom": details.Prenom,
+            "Date": moment().format("DD/MM/YYYY - hh:mm"),
+            "Details": details
         })
 
         _writeFile(tab, callback);
@@ -55,6 +96,21 @@ function _writeFile(tab, callback) {
         if (err)
             callback(err, null)
         else
-            callback(null ,'Command Stored');
+            callback(null, 'Command Stored');
+    });
+}
+
+function _getRefList(callback) {
+    fs.readFile('./server/command/commands.json', 'utf8', function (err, data) {
+        if (err) {
+            callback(err, null)
+        } else {
+            list = [];
+            var tab = JSON.parse(data);
+            tab.forEach(element => {
+                list.push(element.Details.Reference + " - " + element.Nom + ' ' + element.Prenom + ' - ' + element.Date)
+            });
+            callback(null, list);
+        }
     });
 }

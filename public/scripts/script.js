@@ -68,7 +68,7 @@ $(function () {
         $.ajax({
             type: 'POST',
             url: 'http://localhost:3000/newcommand',
-            data: JSON.stringify({details : validator}),
+            data: JSON.stringify({Details : validator}),
             success: function(data){
                 console.log(data);
             }
