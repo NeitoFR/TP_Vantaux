@@ -63,9 +63,7 @@ $(function () {
 
     function _sendCommand(validator) {
         console.log('Sending to serveur', validator);
-        var str = '';
-        for(let elem in validator)
-            str+= elem+':'+validator[elem]+'\n';
+        // var str = '';
         
         $.ajax({
             type: 'POST',
